@@ -172,6 +172,28 @@ class TestThresholdingProcessor(tests.BaseTestCase):
         list.append(json.dumps(metrics))
         return list
 
+    def get_metric1_1(self):
+        list = []
+        metrics = {"name": "biz",
+                   "dimensions": {
+                       "hostname": "h1",
+                       "key2": "value2"
+                   },
+                   "timestamp": time.time(),
+                   "value": 1300}
+        list.append(json.dumps(metrics))
+        metrics = {"name": "biz",
+                   "dimensions": {
+                       "hostname": "h1",
+                       "key1": "value1",
+                       "key2": "value2",
+                       "key3": "value3"
+                   },
+                   "timestamp": time.time(),
+                   "value": 1500}
+        list.append(json.dumps(metrics))
+        return list
+
     def get_metric0(self):
         list = []
         metrics = {"name": "baz",
@@ -252,7 +274,7 @@ class TestThresholdingProcessor(tests.BaseTestCase):
     def test_process_alarms(self):
         """Test if alarm is correctly produced."""
 
-        # test utf8 dimensions
+        # test utf8 dimensions and compound logic expr
         # init processor
         tp = processor.ThresholdingProcessor(self.alarm_definition0)
         # send metrics to the processor
@@ -302,3 +324,13 @@ class TestThresholdingProcessor(tests.BaseTestCase):
         self.assertEqual('ALARM', tp.expr_data_queue['h1']['state'])
         self.assertEqual('ALARM', tp.expr_data_queue['h2']['state'])
         self.assertEqual('OK', tp.expr_data_queue['h3']['state'])
+
+        # test alarms with metrics having more dimensions
+        tp = processor.ThresholdingProcessor(self.alarm_definition1)
+        metrics_list = self.get_metric1_1()
+        for metrics in metrics_list:
+            tp.process_metrics(metrics)
+        alarms = tp.process_alarms()
+        print (alarms)
+        self.assertEqual(1, len(alarms))
+        self.assertEqual(2, len(json.loads(alarms[0])['metrics']))
