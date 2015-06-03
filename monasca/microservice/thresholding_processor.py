@@ -78,6 +78,7 @@ class ThresholdingProcessor(object):
             self.update_sub_expr_state(sub_expr, expr_data)
         state_new = _calc_state(self.parse_result)
         if state_new != expr_data['state']:
+            expr_data['update_timestamp'] = time.time()
             expr_data['state'] = state_new
             return True
         else:
