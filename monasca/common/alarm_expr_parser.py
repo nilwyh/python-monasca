@@ -95,11 +95,6 @@ class SubExpr(object):
         return self._metric_name.lower()
 
     @property
-    def dimensions(self):
-        """Get the dimensions."""
-        return self._dimensions
-
-    @property
     def dimensions_as_list(self):
         """Get the dimensions as a list."""
         if self._dimensions:
@@ -280,14 +275,46 @@ expression = (
 class AlarmExprParser(object):
     def __init__(self, expr):
         self._expr = expr
-        # Remove all spaces before parsing. Simple, quick fix for whitespace
-        # issue with dimension list not allowing whitespace after comma.
+        try:
+            self.parseResult = (expression + pyparsing.stringEnd).parseString(
+                self._expr.replace(' ', ''))[0]
+        except Exception:
+            self.parseResult = None
 
     @property
     def parse_result(self):
-        try:
-            parseResult = (expression + pyparsing.stringEnd).parseString(
-                self._expr.replace(' ', ''))
-            return parseResult[0]
-        except Exception:
+        return self.parseResult
+
+    @property
+    def sub_expr_list(self):
+        if self.parseResult:
+            return self.parseResult.operands_list
+        else:
             return None
+
+    @property
+    def related_metrics(self):
+        """Get a list of all the metrics related with this expression."""
+        related_metrics = []
+        for expr in self.sub_expr_list:
+            related_metrics.append({
+                'name': expr.metric_name,
+                'dimensions': expr.dimensions_as_dict
+            })
+        return related_metrics
+
+    @property
+    def sub_alarm_expressions(self):
+        """Get a list of all the sub expr parsed information."""
+        sub_alarm_expr = {}
+        for expr in self.sub_expr_list:
+            sub_alarm_expr[expr.fmtd_sub_expr_str] = {
+                'function': expr.normalized_func,
+                'metric_name': expr.normalized_metric_name,
+                'dimensions': expr.dimensions_as_dict,
+                'operator': expr.normalized_operator,
+                'threshold': expr.threshold,
+                'period': expr.period,
+                'periods': expr.periods
+            }
+        return sub_alarm_expr
