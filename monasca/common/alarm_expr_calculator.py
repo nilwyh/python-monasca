@@ -68,20 +68,20 @@ def calc_logic(logic_operator, subs):
     'UNDETERMINED' means either True or False.
     """
     if logic_operator == 'AND':
+        state = 'ALARM'
         for o in subs:
             if o == 'OK':
                 return 'OK'
-        for o in subs:
-            if o == 'UNDETERMINED':
-                return 'UNDETERMINED'
-        return 'ALARM'
+            elif o == 'UNDETERMINED':
+                state = 'UNDETERMINED'
+        return state
     elif logic_operator == 'OR':
+        state = 'OK'
         for o in subs:
             if o == 'ALARM':
                 return 'ALARM'
-        for o in subs:
-            if o == 'UNDETERMINED':
-                return 'UNDETERMINED'
-        return 'OK'
+            elif o == 'UNDETERMINED':
+                state = 'UNDETERMINED'
+        return state
     else:
         return 'UNDETERMINED'

@@ -209,8 +209,7 @@ class ThresholdingProcessor(object):
         """Add new metrics to sub expr place."""
 
         def _has_match_expr():
-            if (data['name'].lower().encode('utf8') !=
-                    expr.normalized_metric_name.encode('utf8')):
+            if (data['name'].lower() != expr.normalized_metric_name):
                 return False
             metrics_dimensions = {}
             if 'dimensions' in data:
@@ -218,10 +217,8 @@ class ThresholdingProcessor(object):
             def_dimensions = expr.dimensions_as_dict
             for dimension_key in def_dimensions.keys():
                 if dimension_key in metrics_dimensions:
-                    if (metrics_dimensions[
-                            dimension_key].lower().encode('utf8')
-                            != def_dimensions[
-                            dimension_key].lower().encode('utf8')):
+                    if (metrics_dimensions[dimension_key].lower()
+                            != def_dimensions[dimension_key].lower()):
                         return False
                 else:
                     return False
