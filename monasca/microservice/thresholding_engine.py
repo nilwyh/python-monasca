@@ -63,17 +63,20 @@ class AlarmPublisher(threading.Thread):
         self.interval = cfg.CONF.thresholding_engine.check_alarm_interval
         self.thresholding_processors = tp
 
+    def send_alarm(self):
+        if self._publish_kafka_conn:
+            if lock.acquire():
+                for processor in self.thresholding_processors:
+                    for alarm in (self.thresholding_processors
+                                  [processor].process_alarms()):
+                        LOG.debug(alarm)
+                        self._publish_kafka_conn.send_messages(alarm)
+            lock.release()
+
     def run(self):
         while True:
             try:
-                if self._publish_kafka_conn:
-                    if lock.acquire():
-                        for processor in self.thresholding_processors:
-                            for alarm in (self.thresholding_processors
-                                          [processor].process_alarms()):
-                                LOG.debug(alarm)
-                                self._publish_kafka_conn.send_messages(alarm)
-                    lock.release()
+                self.send_alarm()
                 time.sleep(self.interval)
             except Exception:
                 LOG.exception(
@@ -92,7 +95,7 @@ class MetricsConsumer(threading.Thread):
         self._consume_kafka_conn = kafka_conn.KafkaConnection(topic)
         self.thresholding_processors = tp
 
-    def run(self):
+    def read_metrics(self):
         def consume_metrics():
             if lock.acquire():
                 for alarm_def in self.thresholding_processors:
@@ -100,16 +103,19 @@ class MetricsConsumer(threading.Thread):
                     processor.process_metrics(msg.message.value)
             lock.release()
 
+        if self._consume_kafka_conn:
+            for msg in self._consume_kafka_conn.get_messages():
+                if msg and msg.message:
+                    LOG.debug(msg.message.value)
+                    consume_metrics()
+            self._consume_kafka_conn.commit()
+
+    def run(self):
         while True:
             try:
-                if self._consume_kafka_conn:
-                    for msg in self._consume_kafka_conn.get_messages():
-                        if msg and msg.message:
-                            LOG.debug(msg.message.value)
-                            consume_metrics()
-                    self._consume_kafka_conn.commit()
+                self.read_metrics()
             except Exception:
-                LOG.exception('Error occurred while reading kafka messages.')
+                LOG.exception('Error occurred while reading metrics messages.')
 
     def stop(self):
         self._consume_kafka_conn.close()
@@ -125,7 +131,7 @@ class AlarmDefinitionConsumer(threading.Thread):
             kafka_conn.KafkaConnection(topic))
         self.thresholding_processors = tp
 
-    def run(self):
+    def read_alarm_def(self):
         def create_alarm_processor():
             if temp_alarm_def['id'] in self.thresholding_processors:
                 LOG.debug('already exsist alarm definition')
@@ -158,20 +164,23 @@ class AlarmDefinitionConsumer(threading.Thread):
                     self.thresholding_processors.pop(temp_alarm_def['id'])
             lock.release()
 
+        if self._consume_kafka_conn:
+            for msg in self._consume_kafka_conn.get_messages():
+                if msg and msg.message:
+                    LOG.debug(msg.message.value)
+                    temp_alarm_def = json.loads(msg.message.value)
+                    if temp_alarm_def['request'] == 'POST':
+                        create_alarm_processor()
+                    elif temp_alarm_def['request'] == 'PUT':
+                        update_alarm_processor()
+                    elif temp_alarm_def['request'] == 'DEL':
+                        delete_alarm_processor()
+            self._consume_kafka_conn.commit()
+
+    def run(self):
         while True:
             try:
-                if self._consume_kafka_conn:
-                    for msg in self._consume_kafka_conn.get_messages():
-                        if msg and msg.message:
-                            LOG.debug(msg.message.value)
-                            temp_alarm_def = json.loads(msg.message.value)
-                            if temp_alarm_def['request'] == 'POST':
-                                create_alarm_processor()
-                            elif temp_alarm_def['request'] == 'PUT':
-                                update_alarm_processor()
-                            elif temp_alarm_def['request'] == 'DEL':
-                                delete_alarm_processor()
-                    self._consume_kafka_conn.commit()
+                self.read_alarm_def()
             except Exception:
                 LOG.exception('Error occurred '
                               'while reading alarm def messages.')
