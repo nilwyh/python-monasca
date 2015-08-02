@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Coverage report</title>
+    <link rel='stylesheet' href='style.css' type='text/css'>
+    
+    <script type='text/javascript' src='jquery.min.js'></script>
+    <script type='text/javascript' src='jquery.tablesorter.min.js'></script>
+    <script type='text/javascript' src='jquery.hotkeys.js'></script>
+    <script type='text/javascript' src='coverage_html.js'></script>
+    <script type='text/javascript' charset='utf-8'>
+        jQuery(document).ready(coverage.index_ready);
+    </script>
+</head>
+<body id='indexfile'>
+
+<div id='header'>
+    <div class='content'>
+        <h1>Coverage report:
+            <span class='pc_cov'>60%</span>
+        </h1>
+        <img id='keyboard_icon' src='keybd_closed.png'>
+    </div>
+</div>
+
+<div class='help_panel'>
+    <img id='panel_icon' src='keybd_open.png'>
+    <p class='legend'>Hot-keys on this page</p>
+    <div>
+    <p class='keyhelp'>
+        <span class='key'>n</span>
+        <span class='key'>s</span>
+        <span class='key'>m</span>
+        <span class='key'>x</span>
+        
+        <span class='key'>b</span>
+        <span class='key'>p</span>
+        
+        <span class='key'>c</span> &nbsp; change column sorting
+    </p>
+    </div>
+</div>
+
+<div id='index'>
+    <table class='index'>
+        <thead>
+            
+            <tr class='tablehead' title='Click to sort'>
+                <th class='name left headerSortDown shortkey_n'>Module</th>
+                <th class='shortkey_s'>statements</th>
+                <th class='shortkey_m'>missing</th>
+                <th class='shortkey_x'>excluded</th>
+                
+                <th class='shortkey_b'>branches</th>
+                <th class='shortkey_p'>partial</th>
+                
+                <th class='right shortkey_c'>coverage</th>
+            </tr>
+        </thead>
+        
+        <tfoot>
+            <tr class='total'>
+                <td class='name left'>Total</td>
+                <td>2031</td>
+                <td>777</td>
+                <td>0</td>
+                
+                <td>556</td>
+                <td>68</td>
+                
+                <td class='right'>60%</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca___init__.html'>monasca/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_api___init__.html'>monasca/api/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_api_monasca_api_v2.html'>monasca/api/monasca_api_v2</a></td>
+                <td>61</td>
+                <td>61</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_api_server.html'>monasca/api/server</a></td>
+                <td>29</td>
+                <td>29</td>
+                <td>0</td>
+                
+                <td>6</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common___init__.html'>monasca/common/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_alarm_expr_calculator.html'>monasca/common/alarm_expr_calculator</a></td>
+                <td>36</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>34</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_alarm_expr_parser.html'>monasca/common/alarm_expr_parser</a></td>
+                <td>158</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>36</td>
+                <td>3</td>
+                
+                <td class='right'>96%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_alarm_expr_validator.html'>monasca/common/alarm_expr_validator</a></td>
+                <td>37</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>20</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_email_sender.html'>monasca/common/email_sender</a></td>
+                <td>43</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>2</td>
+                <td>1</td>
+                
+                <td class='right'>89%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_es_conn.html'>monasca/common/es_conn</a></td>
+                <td>78</td>
+                <td>13</td>
+                <td>0</td>
+                
+                <td>18</td>
+                <td>7</td>
+                
+                <td class='right'>77%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_kafka_conn.html'>monasca/common/kafka_conn</a></td>
+                <td>126</td>
+                <td>87</td>
+                <td>0</td>
+                
+                <td>32</td>
+                <td>2</td>
+                
+                <td class='right'>26%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_namespace.html'>monasca/common/namespace</a></td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_common_resource_api.html'>monasca/common/resource_api</a></td>
+                <td>40</td>
+                <td>24</td>
+                <td>0</td>
+                
+                <td>17</td>
+                <td>2</td>
+                
+                <td class='right'>32%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_dispatcher___init__.html'>monasca/dispatcher/__init__</a></td>
+                <td>7</td>
+                <td>1</td>
+                <td>0</td>
+                
+                <td>4</td>
+                <td>1</td>
+                
+                <td class='right'>82%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_dispatcher_sample_dispatcher.html'>monasca/dispatcher/sample_dispatcher</a></td>
+                <td>25</td>
+                <td>25</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice___init__.html'>monasca/microservice/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_es_persister.html'>monasca/microservice/es_persister</a></td>
+                <td>44</td>
+                <td>44</td>
+                <td>0</td>
+                
+                <td>16</td>
+                <td>0</td>
+                
+                <td class='right'>3%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_fixed_strategy.html'>monasca/microservice/fixed_strategy</a></td>
+                <td>11</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_metrics_fixer.html'>monasca/microservice/metrics_fixer</a></td>
+                <td>29</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>8</td>
+                <td>1</td>
+                
+                <td class='right'>86%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_notification_engine.html'>monasca/microservice/notification_engine</a></td>
+                <td>36</td>
+                <td>36</td>
+                <td>0</td>
+                
+                <td>8</td>
+                <td>0</td>
+                
+                <td class='right'>5%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_notification_processor.html'>monasca/microservice/notification_processor</a></td>
+                <td>52</td>
+                <td>12</td>
+                <td>0</td>
+                
+                <td>20</td>
+                <td>6</td>
+                
+                <td class='right'>69%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_server.html'>monasca/microservice/server</a></td>
+                <td>22</td>
+                <td>22</td>
+                <td>0</td>
+                
+                <td>4</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_threshold_engine.html'>monasca/microservice/threshold_engine</a></td>
+                <td>193</td>
+                <td>51</td>
+                <td>0</td>
+                
+                <td>68</td>
+                <td>16</td>
+                
+                <td class='right'>72%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_threshold_processor.html'>monasca/microservice/threshold_processor</a></td>
+                <td>201</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>67</td>
+                <td>2</td>
+                
+                <td class='right'>98%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_microservice_timed_strategy.html'>monasca/microservice/timed_strategy</a></td>
+                <td>48</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>18</td>
+                <td>1</td>
+                
+                <td class='right'>92%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_middleware___init__.html'>monasca/middleware/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_middleware_inspector.html'>monasca/middleware/inspector</a></td>
+                <td>12</td>
+                <td>12</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_middleware_login.html'>monasca/middleware/login</a></td>
+                <td>15</td>
+                <td>15</td>
+                <td>0</td>
+                
+                <td>2</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_middleware_metric_validator.html'>monasca/middleware/metric_validator</a></td>
+                <td>40</td>
+                <td>40</td>
+                <td>0</td>
+                
+                <td>14</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_service.html'>monasca/service</a></td>
+                <td>16</td>
+                <td>16</td>
+                <td>0</td>
+                
+                <td>2</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2___init__.html'>monasca/v2/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch___init__.html'>monasca/v2/elasticsearch/__init__</a></td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                
+                <td>0</td>
+                <td>0</td>
+                
+                <td class='right'>100%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch_alarmdefinitions.html'>monasca/v2/elasticsearch/alarmdefinitions</a></td>
+                <td>178</td>
+                <td>7</td>
+                <td>0</td>
+                
+                <td>40</td>
+                <td>10</td>
+                
+                <td class='right'>92%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch_alarms.html'>monasca/v2/elasticsearch/alarms</a></td>
+                <td>100</td>
+                <td>6</td>
+                <td>0</td>
+                
+                <td>16</td>
+                <td>6</td>
+                
+                <td class='right'>90%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch_metrics.html'>monasca/v2/elasticsearch/metrics</a></td>
+                <td>229</td>
+                <td>229</td>
+                <td>0</td>
+                
+                <td>62</td>
+                <td>0</td>
+                
+                <td class='right'>0%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch_notificationmethods.html'>monasca/v2/elasticsearch/notificationmethods</a></td>
+                <td>138</td>
+                <td>23</td>
+                <td>0</td>
+                
+                <td>40</td>
+                <td>9</td>
+                
+                <td class='right'>73%</td>
+            </tr>
+            
+            <tr class='file'>
+                <td class='name left'><a href='monasca_v2_elasticsearch_versions.html'>monasca/v2/elasticsearch/versions</a></td>
+                <td>23</td>
+                <td>4</td>
+                <td>0</td>
+                
+                <td>2</td>
+                <td>1</td>
+                
+                <td class='right'>80%</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+<div id='footer'>
+    <div class='content'>
+        <p>
+            <a class='nav' href='http://nedbatchelder.com/code/coverage'>coverage.py v3.7.1</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
